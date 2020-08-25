@@ -12,10 +12,11 @@ X_norm = X;
 mu = zeros(1, features);
 sigma = zeros(1, features);
 
+
 for i=1:features,
-	mu(i) = sum(X(:, i)) / data;
-	sigma(i) = max(X(:, i)) - min(X(:, i));
+	mu(i) = mean(X_norm(:, i), 1);
 	X_norm(:, i) = X_norm(:, i) - mu(i);
+	sigma(i) = std(X_norm(:, i));
 	X_norm(:, i) = X_norm(:, i) / sigma(i);
 end;
 % ====================== YOUR CODE HERE ======================
